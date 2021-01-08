@@ -5,19 +5,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Planilla from './components/planilla/Planilla'
 import PlanillaMaestra from './components/planilla/PlanillaMaestra'
-import reportWebVitals from './reportWebVitals';
-
 
 ReactDOM.render(
-  <div>
-    
-      <React.StrictMode>
-    <App  />
-  </React.StrictMode>
+    <div className="App">
 
-  </div>
+       <App  />
+    </div>
 ,
   document.getElementById('root')
 );
 
-reportWebVitals();
+
