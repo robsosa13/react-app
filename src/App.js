@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import Planilla from './components/planilla/Planilla'
+import PlanillaNew from './components/planilla/PlanillaNew'
+import NotFound from './components/pages/NotFound'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App =()=>(
+  <Router>
+  <Switch>
+    <Route exact path="/planilla" component={Planilla} />
+    <Route exact path="/planilla/new" component={PlanillaNew} />
+    <Route  component= {NotFound}/>
+  </Switch>
+
+</Router>
+)
+// function App() {
+//   return (
+//     <Router>
+//       <Switch>
+//         <Route exact path="/planilla" component={Planilla} />
+//         <Route exact path="/planilla/new" component={PlanillaNew} />
+//         <Route  component= {NotFound}/>
+//       </Switch>
+
+//     </Router>
+//   )
+// }
+
 
 export default App;
