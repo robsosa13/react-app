@@ -2,11 +2,18 @@
 import React, { Component } from 'react'
 import { Container, Row, Form, Button } from 'react-bootstrap'
 import {request} from '../helpers/helpers'
-
+import MessagePrompt from '../prompts/message'
+ 
 export default class PlanillaCrear extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            redirect:false,
+            message:{
+                text:"",
+                show:false
+            }
+            ,
             planilla:{
                     caja: "",
                    razon_social : "",
@@ -24,6 +31,7 @@ export default class PlanillaCrear extends Component {
                     ufv_final : "",
             }
         }
+        this.onExitedMessage=this.onExitedMessage.bind(this)
     }
     setValue(index,value){
         this.setState({
@@ -35,82 +43,102 @@ export default class PlanillaCrear extends Component {
     }
     guardarPlanilla(){
         request.post("/planilla-mayor/nueva-planilla",this.state.planilla).then(response=>{
-            if(response.data.exito){
-                this.props.changeTab("buscar")
-            }
-               
+            // if(response.data.exito){
+            //     this.props.changeTab("buscar")
+            // }
+            this.setState({
+                redirect:true ,
+                message:{
+                    text:"Se guardo Exitosamente",
+                    show:true
+                }
+            });
+            // this.props.changeTab("buscar")
+           
         }).catch(err=>{
             console.log(err)
         })
 
+    }
+    onExitedMessage(){
+        console.log('lleg')
+        if(this.state.redirect){
+            this.props.changeTab("buscar")
+        }
+        //this.props.changeTab("buscar")
+   
     }
 
     render() {
 
         return (
             <Container id="planillas-crear-container">
+                <MessagePrompt 
+                    text={this.state.message.text}
+                    show={this.state.message.show}
+                    duration ={2500}
+                    onExited={this.onExitedMessage}
+                />
                 <Row>
                     <h1>Crear Planilla</h1>
                 </Row>
                 <Row>
                     <Form>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Label>caja</Form.Label>
+                            <Form.Label>Caja</Form.Label>
                             <Form.Control 
                             type="email" 
                            onChange={e=>this.setValue("caja",e.target.value)}
-                            
-                            
                             />
                          
                         </Form.Group>
 
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>razon_social</Form.Label>
+                            <Form.Label>Razon Social</Form.Label>
                             <Form.Control type="text"    onChange={e=>this.setValue("razon_social",e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>logo</Form.Label>
+                            <Form.Label>Logo</Form.Label>
                             <Form.Control type="text"    onChange={e=>this.setValue("logo",e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>nit</Form.Label>
+                            <Form.Label>NIT</Form.Label>
                             <Form.Control type="text"   onChange={e=>this.setValue("nit",e.target.value)}  />
                         </Form.Group>
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>salario_minimo</Form.Label>
+                            <Form.Label>Salario Mínimo</Form.Label>
                             <Form.Control type="text"    onChange={e=>this.setValue("salario_minimo",e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>periodo_planilla</Form.Label>
+                            <Form.Label>Periodo Planilla</Form.Label>
                             <Form.Control type="text"   onChange={e=>this.setValue("periodo_planilla",e.target.value)}  />
                         </Form.Group>
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>año_planilla</Form.Label>
+                            <Form.Label>Año Planilla</Form.Label>
                             <Form.Control type="text"    onChange={e=>this.setValue("año_planilla",e.target.value)} />
                         </Form.Group>
 
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>afp</Form.Label>
+                            <Form.Label>Afp</Form.Label>
                             <Form.Control type="text"   onChange={e=>this.setValue("afp",e.target.value)}  />
                         </Form.Group>
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>ciudad</Form.Label>
+                            <Form.Label>Ciudad</Form.Label>
                             <Form.Control type="text"   onChange={e=>this.setValue("ciudad",e.target.value)}  />
                         </Form.Group>
                        
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>sucursal</Form.Label>
+                            <Form.Label>Sucursal</Form.Label>
                             <Form.Control type="text"     onChange={e=>this.setValue("sucursal",e.target.value)}/>
                         </Form.Group>
                        
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>direccion</Form.Label>
+                            <Form.Label>Direccion</Form.Label>
                             <Form.Control type="text"  onChange={e=>this.setValue("direccion",e.target.value)}/> 
                         </Form.Group>
                        
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>ufv_inicial</Form.Label>
+                            <Form.Label>UFV Inicial</Form.Label>
                             <Form.Control type="text"    onChange={e=>this.setValue("ufv_inicial",e.target.value)} />
                         </Form.Group>
                        
@@ -119,7 +147,7 @@ export default class PlanillaCrear extends Component {
                             <Form.Control type="text"    onChange={e=>this.setValue("telefono",e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="formBasictext">
-                            <Form.Label>ufv_final</Form.Label>
+                            <Form.Label>UFV Final</Form.Label>
                             <Form.Control type="text"    onChange={e=>this.setValue("ufv_final",e.target.value)} />
                         </Form.Group>
                        

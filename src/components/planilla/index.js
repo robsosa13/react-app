@@ -13,12 +13,14 @@ export default class Planillas extends Component {
         this.state = {
             currentTab:"buscar"
         }
+        this.changeTab=this.changeTab.bind(this);
+
     }
     changeTab(tab){
         this.setState({currentTab:tab});
 
     }
-    render() {
+    render() {  
         return (<Container id="planillas-container">
             <Row>
                 <Nav
@@ -30,10 +32,10 @@ export default class Planillas extends Component {
                    >
                
                     <Nav.Item>
-                        <Nav.Link eventKey="buscar">Buscar</Nav.Link>
+                        <Nav.Link eventKey="buscar">Planillas</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="crear">Crear</Nav.Link>
+                        <Nav.Link eventKey="crear">Crear Planilla</Nav.Link>
                     </Nav.Item>
                  
                 </Nav>
@@ -41,7 +43,7 @@ export default class Planillas extends Component {
             </Row>
             <Row>
               {
-                  this.state.currentTab==="buscar"? <PlanillaMaster/>:<PlanillaCrear changeTab={tab=> this.changeTab(tab)}/>
+                  this.state.currentTab==="buscar"? <PlanillaMaster/>:<PlanillaCrear changeTab={this.changeTab}/>
               }
             
 

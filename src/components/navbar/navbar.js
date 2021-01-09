@@ -24,8 +24,8 @@ export default class TopMenu extends Component {
                         <Nav.Link href="#pricing">Planillas</Nav.Link>
                     </Nav>
                     <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-info">Search</Button>
+                        <FormControl type="text" placeholder="Buscar" className="mr-sm-2" />
+                        <Button variant="outline-info">Buscar</Button>
                     </Form>
                 </Navbar>
             </div>

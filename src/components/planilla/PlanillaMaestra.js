@@ -45,7 +45,7 @@ const columns = [{
     text: 'Salario Minimo'
 }, {
     dataField: 'año_planilla',
-    text: 'Anio Plantilla'
+    text: 'Año Plantilla'
 }, {
     dataField: 'afp',
     text: 'AFP'
@@ -88,7 +88,7 @@ export default class PlanillaMaestra extends Component {
         return (
             <Container id="planilla-maestra-container">
                 <Row>
-                    <h1>Test</h1>
+                    <h1>Planilla Maestra</h1>
                 </Row>
                 <Row>
                    <DataGrid 
