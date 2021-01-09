@@ -44,8 +44,8 @@ export default class DataGrid extends Component {
                 props => (
                     <div>
                         
-                        {/* <SearchBar {...props.searchProps} />
-                        <hr /> */}
+                        <SearchBar {...props.searchProps} />
+                        <hr />
                         <PaginationProvider
                             pagination={paginationFactory(options)}
                         >

@@ -5,6 +5,11 @@ export const request={
         return axios.get(`${host}${service}`)
 
 
-    }
+    },
+    post:function(service,data){
+        return axios.post(`${host}${service}`,data)
+
+
+    },
 
 }

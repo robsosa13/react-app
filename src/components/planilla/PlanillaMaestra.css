@@ -1,3 +1,13 @@
-#planilla-maestra-container{
+#planillas-container{
     margin-top: 150px;
+}
+
+#planilla-maestra-container,#planillas-crear-container{
+    margin-top: 50px;
+}
+
+
+#planillas-container > .row,
+#planillas-container > .row> .nav-tabs{
+    width: 100%;
 }
