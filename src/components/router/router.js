@@ -12,6 +12,8 @@ export default function AppRouter() {
                 {/* <Route exact path="/planilla" component={Planilla} />
                 <Route exact path="/planilla/new" component={PlanillaNew} /> */}
                 <Route exact path={["/PlanillaMaster","/PlanillaMaster"]} component={planillaMaster} />
+                <Route exact path="/PlanillaMaster" component={planillaMaster} />
+                <Route  path="*" component={()=><h1 style={{marginTop:200,marginLeft:600}}>404 <br/>Pagina No encontrada</h1>}/>
                 {/* <Route component={NotFound} /> */}
             </Switch>
         </Router>
