@@ -10,18 +10,18 @@ import {request} from '../helpers/helpers'
 import { Button } from 'react-bootstrap';
 import { isUndefined   } from 'util'
 const {SearchBar}=Search;
-export default class DataGrid extends Component {
+export default class DataGridPlanilla extends Component {
     constructor(props) {
         super(props);
         this.state = {
             rows:[]
         }
-        if(this.props.showEditButton && !this.existsColumn("Editar")){
-            this.props.columns.push(this.getEditButton())
-        }
-        if(this.props.showPlanilla && !this.existsColumn("Planilla")){
-            this.props.columns.push(this.getshowPlanilla())
-        }
+        // if(this.props.showEditButton && !this.existsColumn("Editar")){
+        //     this.props.columns.push(this.getEditButton())
+        // }
+        // if(this.props.showPlanilla && !this.existsColumn("Planilla")){
+        //     this.props.columns.push(this.getshowPlanilla())
+        // }
     }
     componentDidMount(){
         this.getData()
@@ -29,8 +29,7 @@ export default class DataGrid extends Component {
     getData(){
         request.get(this.props.url).then(response => {
             this.setState({ rows:response.data.planillas});
-            console.log(response.data.planillas)
-           //console.log(response.data)
+           //console.log(response.data.planillas)
         }).catch(err => {
             console.log(err)
         })
@@ -39,30 +38,30 @@ export default class DataGrid extends Component {
         let col = this.props.columns.find(column=>column.text===colText)
         return  !isUndefined(col)
     }
-    getEditButton(){
-        return{
-            text:'Editar',
-            formatter: (cell,row)=>{
-                    //console.log(row)
-                    return <Button onClick={()=>this.props.onClickEditButton(row)}
-                    >
-                        <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
-                    </Button>
-            }
-        }
-    }
-    getshowPlanilla(){
-        return{
-            text:'Planilla',
-            formatter: (cell,row)=>{
-                    //console.log(row)
-                    return <Button  onClick={()=>this.props.onClickEditButton(row)}
-                    >Planilla
-                        {/* <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon> */}
-                    </Button>
-            }
-        }
-    }
+    // getEditButton(){
+    //     return{
+    //         text:'Editar',
+    //         formatter: (cell,row)=>{
+    //                 //console.log(row)
+    //                 return <Button onClick={()=>this.props.onClickEditButton(row)}
+    //                 >
+    //                     <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+    //                 </Button>
+    //         }
+    //     }
+    // }
+    // getshowPlanilla(){
+    //     return{
+    //         text:'Planilla',
+    //         formatter: (cell,row)=>{
+    //                 //console.log(row)
+    //                 return <Button  onClick={()=>this.props.onClickEditButton(row)}
+    //                 >Planilla
+    //                     {/* <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon> */}
+    //                 </Button>
+    //         }
+    //     }
+    // }
     render() {
 
         const options = {
