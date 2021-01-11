@@ -10,15 +10,6 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import DataGrid from'../grid/grid' 
 
 const {SearchBar}=Search;
-
-// const products = [
-//     { id: 1, name: "producto 1", price: 2 },
-//     { id: 1, name: "producto 1", price: 2 }, { id: 1, name: "producto 1", price: 2 },
-//     { id: 1, name: "producto 1", price: 2 }, { id: 1, name: "producto 1", price: 2 },
-//     { id: 1, name: "producto 1", price: 2 }, { id: 1, name: "producto 1", price: 2 },
-//     { id: 1, name: "producto 1", price: 2 }, { id: 1, name: "producto 1", price: 2 },
-//     { id: 1, name: "test", price: 2 }, { id: 1, name: "producto 1", price: 2 }
-// ];
 const columns = [{
     dataField: '_id',
     text: 'Product ID',
@@ -80,6 +71,18 @@ export default class PlanillaMaestra extends Component {
         super(props);
         this.state = {
         }
+        this.onClickEditButton=this.onClickEditButton.bind(this)
+    }
+    componentDidMount(){
+
+    }
+    onClickEditButton(row){
+        //console.log(row)
+       //this.props.changeTab("editar")
+       this.props.setIdPlanilla(row._id)
+        this.props.changeTab("editar")
+
+
     }
 
     render() {
@@ -94,7 +97,9 @@ export default class PlanillaMaestra extends Component {
                    <DataGrid 
                    url="/planilla-mayor"
                    columns={columns}
-                   
+                   showEditButton={true}
+                   onClickEditButton={this.onClickEditButton}
+                //    changeTab={this.props.changeTab}
                    />
 
                     {/* <BootstrapTable keyField='id' data={products} columns={columns} pagination={paginationFactory()} /> */}
@@ -104,82 +109,3 @@ export default class PlanillaMaestra extends Component {
         )
     }
 }
-
-// class PlanillaMaestra extends Component {
-
-//         state = {
-//             data_a: []
-//         };
-
-//     async componentDidMount() {
-
-//         await this.fetchPlanillaMaster()
-//     }
-//     fetchPlanillaMaster = async () => {
-//         let res = await fetch('http://localhost:4201/api/planilla-mayor')
-//         let data = await res.json()
-
-//         this.setState({ data_a: data });
-
-//     }
-//     render() {
-//         const { data_a } = this.state;
-
-//         console.log('test-1', data_a)
-//         return (
-//             <div>   
-//                 <h1>Planilla Maestra</h1>
-//                 <Table striped border="1">
-//                     <thead>
-//                         <tr>
-//                             <th>Nro.</th>
-//                             <th>Caja</th>
-//                             <th>Razon Social</th>
-//                             <th>Logo</th>
-//                             <th>Titulo</th>
-//                             <th>Nit</th>
-//                             <th>Salario Minimo</th>
-//                             <th>Periodo Planilla</th>
-//                             <th>Año Planilla</th>
-//                             <th>AFP</th>
-//                             <th>Ciudad</th>
-//                             <th>Sucursal</th>
-//                             <th>Direccion</th>
-//                             <th>UFV Inicial </th>
-//                             <th>Telefono</th>
-//                             <th>UFV Final</th>
-//                             <th>Opciones</th>
-//                         </tr>
-//                     </thead>
-//                     <tbody>
-//                         {data_a.map(planillas => {
-//                             return (
-
-//                                 <tr >
-//                                     <td >{planillas._id}</td>
-//                                     <td>{planillas.afp}</td>
-//                                     <td>{planillas.año_planilla}</td>
-//                                     <td>{planillas.caja}</td>
-//                                     <td>{planillas.ciudad}</td>
-//                                     <td>{planillas.direccion}</td>
-//                                     <td>{planillas.logo}</td>
-//                                     <td>{planillas.nit}</td>
-//                                     <td>{planillas.periodo_planilla}</td>
-//                                     <td>{planillas.razon_social}</td>
-//                                     <td>{planillas.salario_minimo}</td>
-//                                     <td>{planillas.sucursal}</td>
-//                                     <td>{planillas.telefono}</td>
-//                                     <td>{planillas.titulo}</td>
-//                                     <td>{planillas.ufv_final}</td>
-//                                     <td>{planillas.ufv_inicial}</td>
-//                                 </tr>
-//                             )
-//                         })}
-//                     </tbody>
-//                 </Table>
-//             </div>
-//         )
-//     }
-// }
-
-// export default PlanillaMaestra

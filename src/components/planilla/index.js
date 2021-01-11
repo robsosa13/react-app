@@ -4,6 +4,7 @@ import { Nav, Container, Row } from 'react-bootstrap';
 import './PlanillaMaestra.css'
 import PlanillaMaster from './PlanillaMaestra'
 import PlanillaCrear from './crear'
+import PlanillaEditar from './editar';
 
 
 export default class Planillas extends Component {
@@ -11,14 +12,26 @@ export default class Planillas extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentTab:"buscar"
+            currentTab:"buscar",
+            _id:null
         }
         this.changeTab=this.changeTab.bind(this);
+        
+        this.setIdPlanilla=this.setIdPlanilla.bind(this);
+        
+        this.getIdPlanilla=this.getIdPlanilla.bind(this);
 
     }
     changeTab(tab){
         this.setState({currentTab:tab});
 
+    }
+    setIdPlanilla(id){
+        this.setState({_id:id})
+
+    }
+    getIdPlanilla(){
+        return this.state._id
     }
     render() {  
         return (<Container id="planillas-container">
@@ -43,7 +56,12 @@ export default class Planillas extends Component {
             </Row>
             <Row>
               {
-                  this.state.currentTab==="buscar"? <PlanillaMaster/>:<PlanillaCrear changeTab={this.changeTab}/>
+                  this.state.currentTab==="buscar"? 
+                  <PlanillaMaster changeTab={this.changeTab} setIdPlanilla={this.setIdPlanilla}/>: 
+                  this.state.currentTab === "crear"? <PlanillaCrear changeTab={this.changeTab} />:
+                  <PlanillaEditar getIdPlanilla={this.getIdPlanilla} />
+
+
               }
             
 
