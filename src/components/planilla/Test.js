@@ -12,7 +12,7 @@ class Test extends Component {
 	}
     cargarDatos()
 	{
-        fetch('http://localhost:4201/api/planilla-mayor',
+        fetch('http://localhost:4201/api/planillas',
             {
 					method: "GET",
                     headers: {
@@ -23,7 +23,7 @@ class Test extends Component {
                 return response.json()
             })
             .then((res) => {
-                console.log('res',res)
+                console.log('result',res)
                             this.setState({
                                 postres:res.planillas
                             })
@@ -78,8 +78,15 @@ class Test extends Component {
                                  ?
                         postres.map(item => (
 
-                            <tr>
+                            <tr key={item._id}>
+                                <td>{item.idPlanillaMayor.logo}</td>
+                                <td>{item.total_ganado}</td>
+                            
+                                {/* <th className="text-center" >{item.caja}</th>
                                 <th className="text-center" >{item.caja}</th>
+                                <th className="text-center" >{item.caja}</th>
+                                <th className="text-center" >{item.caja}</th> */}
+
                                 {/* <td className="text-center">{item.nombre}</td>
                                 <td className="text-center">{item.stock}</td>
                                 <td className="text-center">{item.precio}</td> */}
